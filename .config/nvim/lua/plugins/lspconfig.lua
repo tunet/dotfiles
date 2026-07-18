@@ -52,7 +52,15 @@ return {
 
       -- Global LSP Mappings (Native Neovim bindings)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition" })
+
+      -- Show all references/method calls under the cursor
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP: [G]oto [R]eferences" })
+
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Hover Documentation" })
+
+      -- Quickfix navigation shortcuts
+      vim.keymap.set("n", "[c", ":cprevious<CR>", { silent = true, desc = "Previous reference" })
+      vim.keymap.set("n", "]c", ":cnext<CR>", { silent = true, desc = "Next reference" })
     end,
   },
 }
