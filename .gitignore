@@ -6,6 +6,9 @@
 
 !.bashrc
 
+!bin/
+!bin/**
+
 !.config/
 
 !.config/i3/

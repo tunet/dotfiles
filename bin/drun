@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Help text helper
+show_help() {
+    echo "Usage: drun <project_name> [-d|--debug]"
+    exit 1
+}
+
+# Ensure at least a project name is given
+if [ -z "$1" ]; then
+    show_help
+fi
+
+PROJECT_NAME="$1"
+IS_DEBUG=0
+
+# Parse arguments for the debug flag
+for arg in "$@"; do
+    if [ "$arg" = "-d" ] || [ "$arg" = "--debug" ]; then
+        IS_DEBUG=1
+    fi
+done
+
+echo "Building solution..."
+dotnet build
+
+# Clear the screen after a successful build
+clear
+
+# Navigate dynamically to find the executable DLL
+# 1. Look for the project folder
+if [ ! -d "$PROJECT_NAME" ]; then
+    echo "Error: Project directory '$PROJECT_NAME' not found."
+    exit 1
+fi
+
+# 2. Find the first net* folder inside bin/Debug
+# Using find to grab the path to the specific DLL dynamically
+DLL_PATH=$(find "$PROJECT_NAME/bin/Debug" -mindepth 1 -maxdepth 2 -name "${PROJECT_NAME}.dll" | head -n 1)
+
+if [ -z "$DLL_PATH" ]; then
+    echo "Error: Could not dynamically find ${PROJECT_NAME}.dll inside $PROJECT_NAME/bin/Debug/"
+    exit 1
+fi
+
+# Execute the DLL based on the debug flag
+if [ "$IS_DEBUG" -eq 1 ]; then
+    echo "Running with ddebug=1..."
+    ddebug=1 dotnet "$DLL_PATH"
+else
+    dotnet "$DLL_PATH"
+fi
+
