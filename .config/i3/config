@@ -195,7 +195,6 @@ bar {
 
 # Set huge horizontal margins for a specific workspace (e.g., Workspace 3)
 workspace $ws1 gaps horizontal 350
-workspace $ws1 gaps vertical 80
 
 # Define Workspace Names
 set $ws1 "1: Term"
