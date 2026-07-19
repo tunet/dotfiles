@@ -14,3 +14,7 @@ keybind = ctrl+shift+alt+down=resize_split:down,100
 
 keybind = ctrl+shift+l=new_split:left
 
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
