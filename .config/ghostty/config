@@ -7,14 +7,18 @@ keybind = ctrl+alt+k=goto_split:top
 keybind = ctrl+alt+l=goto_split:right
 
 # Resize split windows
-keybind = ctrl+shift+alt+left=resize_split:left,100
-keybind = ctrl+shift+alt+right=resize_split:right,100
-keybind = ctrl+shift+alt+up=resize_split:up,100
-keybind = ctrl+shift+alt+down=resize_split:down,100
+keybind = ctrl+shift+alt+h=resize_split:left,100
+keybind = ctrl+shift+alt+l=resize_split:right,100
+keybind = ctrl+shift+alt+k=resize_split:up,100
+keybind = ctrl+shift+alt+j=resize_split:down,100
 
 keybind = ctrl+shift+l=new_split:left
 
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
+
+# History navigation via Ghostty
+keybind = alt+k=csi:A
+keybind = alt+j=csi:B
 
