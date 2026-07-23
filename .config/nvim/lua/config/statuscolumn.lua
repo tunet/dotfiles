@@ -17,5 +17,9 @@ end
 
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.statuscolumn = "%!v:lua.my_statuscolumn()"
+-- vim.opt.statuscolumn = "%!v:lua.my_statuscolumn()"
 
+-- %s = Sign column (Git, diagnostics)
+-- %= = Right-align the line numbers
+-- %l = Native line number (handles the hybrid relative/absolute logic automatically)
+vim.opt.statuscolumn = "%s %= %l "
